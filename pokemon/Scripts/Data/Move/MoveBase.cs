@@ -36,17 +36,6 @@ public class MoveBase : EffectObjectBase
 
     public bool bIsEffectByItem { get; set; } = false;
 
-    public ConditionData condition
-    {
-        get => Condition;
-        set => Condition = value;
-    }
-
-    public List<EffectBase> abilityEffectList
-    {
-        get => EffectList;
-        set => EffectList = value;
-    }
 
     public MoveBase(string moveId, string moveName, int powPoint, TypeEnum moveType, string desc, int accuracy,
         int priority, int ctLevel, MoveAtkRangeEnum moveAtkRangeEnum, MoveContactEnum moveContactEnum,
@@ -69,8 +58,7 @@ public class MoveBase : EffectObjectBase
         this.bIsEffectBySnatch = bIsEffectBySnatch;
         this.bIsEffectByMirror = bIsEffectByMirror;
         this.bIsEffectByItem = bIsEffectByItem;
-        Condition = conditionData;
-        EffectList = new List<EffectBase>();
+        EffectDataList = new List<EffectData>();
     }
 
     public void InitEffectListByTable()

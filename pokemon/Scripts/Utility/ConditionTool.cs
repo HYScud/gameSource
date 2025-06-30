@@ -7,7 +7,7 @@ public static class ConditionTool
      * @param battleContext 战斗中的上下文
      * @param conditionData 触发条件
      */
-    private static bool CheckCondition(BattleContext battleContext, ConditionData conditionData)
+    public static bool CheckCondition(BattleContext battleContext, ConditionData conditionData)
     {
         var flag = false;
         switch (conditionData.ConditionEnum)

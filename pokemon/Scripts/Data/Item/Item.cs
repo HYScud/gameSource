@@ -15,7 +15,15 @@ public abstract class Item : EffectObjectBase
         OriginId = originId;
         Desc = desc;
         ItemName = itemName;
-        Condition = condition;
-        EffectList = new List<EffectBase>();
+        EffectDataList = new List<EffectData>();
+    }
+
+    public void Test()
+    {
+        var conditionData = new ConditionData(ConditionEnum.RoundEnd, 1);
+        EffectBase healItem = new HealEffect(false, 30);
+
+        var effectData = new EffectData(conditionData, healItem);
+        AddEffectToList(effectData);
     }
 }

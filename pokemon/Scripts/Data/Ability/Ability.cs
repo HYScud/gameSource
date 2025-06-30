@@ -15,7 +15,6 @@ public abstract class Ability : EffectObjectBase
         OriginId = originId;
         Desc = desc;
         AbilityName = abilityName;
-        Condition = condition;
-        EffectList = new List<EffectBase>();
+        EffectDataList = new List<EffectData>();
     }
 }
