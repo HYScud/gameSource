@@ -5,32 +5,42 @@ using UnityEngine;
 
 public class Move
 {
-    private readonly MoveBase m_MoveBase;
+    public MoveBase moveBase { get; }
 
     public int curPowerPoint { get; set; }
 
     public Move(MoveBase moveBase, int pp)
     {
-        m_MoveBase = moveBase;
+        this.moveBase = moveBase;
         curPowerPoint = pp;
+    }
+
+    public MoveTypeEnum GetMoveType()
+    {
+        return moveBase.moveTypeEnum;
+    }
+
+    public int GetMovePower()
+    {
+        return moveBase.movePower;
     }
 
     public override bool Equals(object obj)
     {
         var target = obj as Move;
-        if (target == null || target.m_MoveBase == null || m_MoveBase == null)
+        if (target == null || target.moveBase == null || moveBase == null)
             return false;
         else
-            return m_MoveBase.moveId == target.m_MoveBase.moveId;
+            return moveBase.moveId == target.moveBase.moveId;
     }
 
     public override int GetHashCode()
     {
-        return m_MoveBase.GetHashCode();
+        return moveBase.GetHashCode();
     }
 
     public override string ToString()
     {
-        return m_MoveBase.ToString();
+        return moveBase.ToString();
     }
 }

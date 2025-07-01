@@ -8,31 +8,14 @@
     public Move CurUsedMove;
     public TerrainData TerrainData;
     public float DamageMultiplier = 1.0f;
-
-    public BattleContext(BattlePokemon source, BattlePokemon target, BattleStage curStage, Move curUsedMove)
-    {
-        Source = source;
-        Target = target;
-        CurStage = curStage;
-        CurUsedMove = curUsedMove;
-    }
-
-    public BattleContext(BattlePokemon source, BattlePokemon target, BattleStage curStage)
-    {
-        Source = source;
-        Target = target;
-        CurStage = curStage;
-    }
-
-    public BattleContext(BattlePokemon target, BattleStage curStage, Move curUsedMove)
-    {
-        Target = target;
-        CurStage = curStage;
-        CurUsedMove = curUsedMove;
-    }
+    public float MovePowerMultiplier = 1.0f;
+    public int[] StatsValue = new[] { 0, 0, 0, 0, 0 };
+    public BattlePowerModifyData BattlePowerModifyData;
+    public BattleBaseValueModify BattleBaseValueModify;
 
     public BattleContext(BattlePokemon source, BattlePokemon target, BattleStage curStage, int damage,
-        WeatherData weatherData, Move curUsedMove, TerrainData terrainData, float damageMultiplier)
+        WeatherData weatherData, Move curUsedMove, TerrainData terrainData, float damageMultiplier,
+        BattlePowerModifyData battlePowerModifyData, BattleBaseValueModify battleBaseValueModify)
     {
         Source = source;
         Target = target;
@@ -42,5 +25,7 @@
         CurUsedMove = curUsedMove;
         TerrainData = terrainData;
         DamageMultiplier = damageMultiplier;
+        BattlePowerModifyData = battlePowerModifyData;
+        BattleBaseValueModify = battleBaseValueModify;
     }
 }

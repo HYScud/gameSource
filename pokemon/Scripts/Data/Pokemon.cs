@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pokemon
 {
-    private readonly PokemonBase m_PokemonBase;
+    public PokemonBase pokemonBase { get; }
 
     public int curExp { get; set; }
     public Move[] moves { get; } = new Move[4];
@@ -13,12 +13,12 @@ public class Pokemon
     public int statusCounter { get; set; } // 用于睡眠回合计数等
 
     public List<Move> ForgottenMoves = new();
-    private Ability m_CurAbility;
+    public Ability m_CurAbility;
     public Item CurCarriedItem;
 
     //努力值
 
-    private int level { get; set; }
+    public int level { get; set; }
 
     public Ability curAbility
     {
@@ -26,23 +26,23 @@ public class Pokemon
         set => m_CurAbility = value ?? throw new ArgumentNullException(nameof(value));
     }
 
-    private int basePointsHp { get; set; } = 0;
+    public int basePointsHp { get; set; } = 0;
 
-    private int basePointsATk { get; set; } = 0;
+    public int basePointsATk { get; set; } = 0;
 
-    private int basePointsSpaTk { get; set; } = 0;
+    public int basePointsSpaTk { get; set; } = 0;
 
-    private int basePointsDef { get; set; } = 0;
+    public int basePointsDef { get; set; } = 0;
 
-    private int basePointsSpDef { get; set; } = 0;
+    public int basePointsSpDef { get; set; } = 0;
 
-    private int basePointsSpeed { get; set; } = 0;
+    public int basePointsSpeed { get; set; } = 0;
 
-    private NatureTypeEnum natureType
+    public NatureTypeEnum natureType
     {
         get
         {
-            if (m_PokemonBase?.PokemonInfo != null) return m_PokemonBase.PokemonInfo.natureType;
+            if (pokemonBase?.PokemonInfo != null) return pokemonBase.PokemonInfo.natureType;
 
             return NatureTypeEnum.None;
         }
@@ -52,45 +52,45 @@ public class Pokemon
     {
         get
         {
-            if (m_PokemonBase.PokemonInfo.Id == "292")
+            if (pokemonBase.PokemonInfo.Id == "292")
                 return 1;
             else
-                return Mathf.FloorToInt((m_PokemonBase.hp * 2 + m_PokemonBase.hp + Mathf.FloorToInt(basePointsHp / 4)) *
+                return Mathf.FloorToInt((pokemonBase.hp * 2 + pokemonBase.hp + Mathf.FloorToInt(basePointsHp / 4)) *
                     level / 100f) + 10 + level;
         }
     }
 
     public int attack =>
-        Mathf.FloorToInt(((m_PokemonBase.attack * 2 + attack + basePointsATk / 4) * level / 100f + 5 + level) *
+        Mathf.FloorToInt(((pokemonBase.attack * 2 + attack + basePointsATk / 4) * level / 100f + 5 + level) *
                          PokemonTable.GetNatureEffect(0, natureType));
 
     public int defense =>
         Mathf.FloorToInt(
-            ((m_PokemonBase.defense * 2 + m_PokemonBase.ivDefence + basePointsSpaTk / 4) * level / 100f + 5 + level) *
+            ((pokemonBase.defense * 2 + pokemonBase.ivDefence + basePointsSpaTk / 4) * level / 100f + 5 + level) *
             PokemonTable.GetNatureEffect(1, natureType));
 
     public int specialAttack =>
         Mathf.FloorToInt(
-            ((m_PokemonBase.specialATk * 2 + m_PokemonBase.ivSpecialAtk + basePointsDef / 4) * level / 100f + 5 +
+            ((pokemonBase.specialATk * 2 + pokemonBase.ivSpecialAtk + basePointsDef / 4) * level / 100f + 5 +
              level) *
             PokemonTable.GetNatureEffect(2, natureType));
 
     public int specialDefense =>
         Mathf.FloorToInt(
-            ((m_PokemonBase.specialDef * 2 + m_PokemonBase.ivSpecialDef + basePointsSpDef / 4) * level / 100f + 5 +
+            ((pokemonBase.specialDef * 2 + pokemonBase.ivSpecialDef + basePointsSpDef / 4) * level / 100f + 5 +
              level) *
             PokemonTable.GetNatureEffect(3, natureType));
 
     public int speed =>
         Mathf.FloorToInt(
-            ((m_PokemonBase.speed * 2 + m_PokemonBase.ivSpeed + basePointsSpeed / 4) * level / 100f + 5 + level) *
+            ((pokemonBase.speed * 2 + pokemonBase.ivSpeed + basePointsSpeed / 4) * level / 100f + 5 + level) *
             PokemonTable.GetNatureEffect(4, natureType));
 
     public Pokemon(PokemonBase pokemonBase, StatusTypeEnum status, Ability curAbility, Item curCarriedItem,
         int basePointsHp, int basePointsATk, int basePointsSpaTk, int basePointsDef, int basePointsSpDef,
         int basePointsSpeed, int curExp, int statusCounter, int level)
     {
-        m_PokemonBase = pokemonBase;
+        this.pokemonBase = pokemonBase;
         Status = status;
         m_CurAbility = curAbility;
         CurCarriedItem = curCarriedItem;

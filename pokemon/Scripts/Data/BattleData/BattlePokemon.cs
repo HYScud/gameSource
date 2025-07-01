@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class BattlePokemon
 {
+    public int posIndex;
     public Pokemon pokemon;
-    private int criticalHitLevel;
-    private int accuracyRate;
+    private int criticalHitLevel = 0;
+    private int accuracyRate = 0;
 
     public int[] normalStatLevel = new[] { 0, 0, 0, 0, 0 };
+
+    public BattlePokemon(int posIndex, Pokemon pokemon)
+    {
+        this.posIndex = posIndex;
+        this.pokemon = pokemon;
+    }
 
     public int CriticalHitLevel
     {
@@ -66,5 +73,9 @@ public class BattlePokemon
         {
             Debug.LogError("AddStatus Error pokemon is null");
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
     }
 }
