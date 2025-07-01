@@ -20,6 +20,11 @@ public class Move
         return moveBase.moveTypeEnum;
     }
 
+    public MovePowerTypeEnum GetMovePowerType()
+    {
+        return moveBase.movePowerType;
+    }
+
     public int GetMovePower()
     {
         return moveBase.movePower;

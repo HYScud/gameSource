@@ -1,4 +1,6 @@
-﻿public class BattleContext
+﻿using System.Linq;
+
+public class BattleContext
 {
     public BattlePokemon Source;
     public BattlePokemon Target;
@@ -12,6 +14,7 @@
     public int[] StatsValue = new[] { 0, 0, 0, 0, 0 };
     public BattlePowerModifyData BattlePowerModifyData;
     public BattleBaseValueModify BattleBaseValueModify;
+    public int[] BattleTypeMovePowerModify = Enumerable.Repeat(1, 10).ToArray();
 
     public BattleContext(BattlePokemon source, BattlePokemon target, BattleStage curStage, int damage,
         WeatherData weatherData, Move curUsedMove, TerrainData terrainData, float damageMultiplier,

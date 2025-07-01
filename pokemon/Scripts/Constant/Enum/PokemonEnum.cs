@@ -1,11 +1,11 @@
 public enum ExpTypeEnum
 {
-    Best_Fast,
+    BestFast,
     Faster,
     Fast,
     Slow,
     Slower,
-    Best_Slow
+    BestSlow
 }
 
 public enum SexTypeEnum
@@ -79,21 +79,32 @@ public enum ShinyTypeEnum
 
 public enum StatusTypeEnum
 {
-    none,
-    brn,
-    frz,
-    hyp,
-    par,
-    psn,
-    slp
+    None,
+    Burn, //烧伤
+    Freeze, //冰冻
+    Paralysis, //麻痹
+    Poison, //中毒
+    Sleep, //睡眠，
+    BadlyPoison, //剧毒
+    Drowsy, //瞌睡
+    Fainting //濒死
 }
 
 public enum SecondStatusTypeEnum
 {
     None,
-    Confusion
+    Confusion = 1, //混乱
+    Infatuation = 2, //着迷
+    Nightmare = 3, //噩梦
+    Encore = 4, //再来一次
+    TormentTorment = 5, //无理取闹
+    HealingPrevented = 6, //回复封锁
+    Disable = 7, //定身法
+    LockOn = 8, //锁定
+    Taunt = 9, //挑衅
+    Embargo = 10, //查封
+    Ignition = 11 //引火状态
 }
-
 
 /******************技能枚举**********************/
 public enum MoveTypeEnum
@@ -124,13 +135,33 @@ public enum MoveAtkRangeEnum
     FaintingPokemon = 16 //濒死的宝可梦
 }
 
+/// <summary>
+/// 技能接触类型枚举
+/// </summary>
 public enum MoveContactEnum
 {
-    None,
-    DirectAttack,
-    SpecialAttack
+    None = 0,
+    DirectContactAttack, //接触攻击
+    NotContactAttack //非接触攻击
 }
 
+/// <summary>
+/// 技能威力类型
+/// </summary>
+public enum MovePowerTypeEnum
+{
+    None = 0,
+    Fixed = 1, //固定值
+    MaxHp = 2, //最大血量（一击必杀）
+    Level = 3, //等级伤害
+    PercentCurHp = 4, //当前血量百分比
+    PercentMaxHp = 5, //最大血量百分比
+    Friendship = 6 //亲密度
+}
+
+/// <summary>
+/// 技能学习方式
+/// </summary>
 public enum MoveLearnTypeEnum
 {
     None = 0,

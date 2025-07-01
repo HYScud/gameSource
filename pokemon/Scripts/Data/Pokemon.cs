@@ -16,27 +16,24 @@ public class Pokemon
     public Ability m_CurAbility;
     public Item CurCarriedItem;
 
-    //努力值
-
     public int level { get; set; }
 
-    public Ability curAbility
-    {
-        get => m_CurAbility;
-        set => m_CurAbility = value ?? throw new ArgumentNullException(nameof(value));
-    }
-
+    //努力值
     public int basePointsHp { get; set; } = 0;
-
     public int basePointsATk { get; set; } = 0;
-
     public int basePointsSpaTk { get; set; } = 0;
-
     public int basePointsDef { get; set; } = 0;
-
     public int basePointsSpDef { get; set; } = 0;
 
     public int basePointsSpeed { get; set; } = 0;
+
+    //亲密度-美丽度等
+    public int BasePointsFriendship = 0;
+    public int BasePointsBeauty = 0;
+    public int BasePointsCute = 0;
+    public int BasePointsSmart = 0;
+    public int BasePointsCool = 0;
+    public int BasePointsTough = 0;
 
     public NatureTypeEnum natureType
     {
@@ -48,6 +45,8 @@ public class Pokemon
         }
     }
 
+    public int curHp { get; set; }
+
     public int maxHp
     {
         get
@@ -58,6 +57,12 @@ public class Pokemon
                 return Mathf.FloorToInt((pokemonBase.hp * 2 + pokemonBase.hp + Mathf.FloorToInt(basePointsHp / 4)) *
                     level / 100f) + 10 + level;
         }
+    }
+
+    public Ability curAbility
+    {
+        get => m_CurAbility;
+        set => m_CurAbility = value ?? throw new ArgumentNullException(nameof(value));
     }
 
     public int attack =>
@@ -86,30 +91,31 @@ public class Pokemon
             ((pokemonBase.speed * 2 + pokemonBase.ivSpeed + basePointsSpeed / 4) * level / 100f + 5 + level) *
             PokemonTable.GetNatureEffect(4, natureType));
 
-    public Pokemon(PokemonBase pokemonBase, StatusTypeEnum status, Ability curAbility, Item curCarriedItem,
-        int basePointsHp, int basePointsATk, int basePointsSpaTk, int basePointsDef, int basePointsSpDef,
-        int basePointsSpeed, int curExp, int statusCounter, int level)
+    public Pokemon(StatusTypeEnum status, Ability curAbility, Item curCarriedItem, PokemonBase pokemonBase, int curExp,
+        int statusCounter, int level, int basePointsHp, int basePointsATk, int basePointsSpaTk, int basePointsDef,
+        int basePointsSpDef, int basePointsSpeed, int curHp)
     {
-        this.pokemonBase = pokemonBase;
         Status = status;
         m_CurAbility = curAbility;
         CurCarriedItem = curCarriedItem;
+        this.pokemonBase = pokemonBase;
+        this.curExp = curExp;
+        this.statusCounter = statusCounter;
+        this.level = level;
         this.basePointsHp = basePointsHp;
         this.basePointsATk = basePointsATk;
         this.basePointsSpaTk = basePointsSpaTk;
         this.basePointsDef = basePointsDef;
         this.basePointsSpDef = basePointsSpDef;
         this.basePointsSpeed = basePointsSpeed;
-        this.curExp = curExp;
-        this.statusCounter = statusCounter;
-        this.level = level;
+        this.curHp = curHp;
     }
 
     public bool RemoveStatus()
     {
-        if (Status != StatusTypeEnum.none)
+        if (Status != StatusTypeEnum.None)
         {
-            Status = StatusTypeEnum.none;
+            Status = StatusTypeEnum.None;
             return true;
         }
         else
@@ -121,7 +127,7 @@ public class Pokemon
 
     public bool AddStatus(StatusTypeEnum statusType)
     {
-        if (Status == StatusTypeEnum.none)
+        if (Status == StatusTypeEnum.None)
         {
             Status = statusType;
             return true;

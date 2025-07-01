@@ -38,10 +38,12 @@ public class MoveBase : EffectObjectBase
 
     public bool bIsEffectByItem { get; set; } = false;
 
+    public MovePowerTypeEnum movePowerType { get; set; }
+
     public MoveBase(string moveId, string moveName, int movePower, int powPoint, TypeEnum moveType, string desc,
         int accuracy, int priority, int ctLevel, MoveAtkRangeEnum moveAtkRangeEnum, MoveContactEnum moveContactEnum,
         MoveTypeEnum moveTypeEnum, bool bIsEffectByProtect, bool bIsEffectByMagicCoat, bool bIsEffectBySnatch,
-        bool bIsEffectByMirror, bool bIsEffectByItem)
+        bool bIsEffectByMirror, bool bIsEffectByItem, MovePowerTypeEnum movePowerType)
     {
         this.moveId = moveId;
         this.moveName = moveName;
@@ -60,6 +62,7 @@ public class MoveBase : EffectObjectBase
         this.bIsEffectBySnatch = bIsEffectBySnatch;
         this.bIsEffectByMirror = bIsEffectByMirror;
         this.bIsEffectByItem = bIsEffectByItem;
+        this.movePowerType = movePowerType;
     }
 
     public void InitEffectListByTable()
